@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         ArrayList<PessoaFisica> listaPf = new ArrayList<>();
+        PessoaFisica metodoPf = new PessoaFisica();
 
         System.out.println("Bem vindo ao sistema de cadastro de Pessoas Fisicas e Juridicas");
 
@@ -86,6 +87,7 @@ public class Main {
                                         System.out.println("Nome: " + cadaPf.nome);
                                         System.out.println("CPF: " + cadaPf.cpf);
                                         System.out.println("Data de Nascimento: " + cadaPf.dataNasc.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                                        System.out.println("Imposto a ser pago: " + metodoPf.CalcularImposto(cadaPf.rendimento));
                                         System.out.println("Endereco: " + cadaPf.endereco.logradouro + "-" + cadaPf.endereco.numero);
                                         System.out.println();
                                         System.out.println("Aperte ENTER para continuar");
