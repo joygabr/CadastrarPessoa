@@ -9,6 +9,9 @@ public class Main {
         ArrayList<PessoaFisica> listaPf = new ArrayList<>();
         PessoaFisica metodoPf = new PessoaFisica();
 
+        ArrayList<PessoaJuridica> listaPj = new ArrayList<>();
+        PessoaJuridica metodoPj = new PessoaJuridica();
+
         System.out.println("Bem vindo ao sistema de cadastro de Pessoas Fisicas e Juridicas");
 
         Scanner leitor = new Scanner(System.in);
@@ -113,7 +116,74 @@ public class Main {
                     break;
 
                 case "2":
-                    System.out.println("case 2");
+                    String opcaoPj;
+
+                    do{
+
+                        System.out.println("Digite uma opcao: 1 - Cadastrar PJ / 2 - Listar PJ / 0 - Voltar");
+                        opcaoPj = leitor.nextLine();
+
+                        switch(opcaoPj){
+                            case "1":
+                                PessoaJuridica novaPj = new PessoaJuridica();
+                                Endereco novoEndPj = new Endereco();
+
+                                System.out.print("Digite o nome: ");
+                                novaPj.nome = leitor.nextLine();
+
+                                System.out.print("Digite o cnpj: ");
+                                novaPj.cnpj = leitor.nextLine();
+
+                                System.out.print("Digite o rendimento: ");
+                                novaPj.rendimento = leitor.nextFloat();
+
+                                System.out.print("Digite a Razao Social: ");
+                                novaPj.razaoSocial = leitor.nextLine();
+
+                                leitor.nextLine();
+
+                                System.out.print("Digite o logradouro: ");
+                                novoEndPj.logradouro = leitor.nextLine();
+
+                                System.out.print("Digite o numero: ");
+                                novoEndPj.numero = leitor.nextInt();
+
+                                System.out.print("Este endereco e comercial? S/N: ");
+                                String endCom = leitor.nextLine();
+                                if(endCom.equals("S") || endCom.equals("s")){
+                                    novoEndPj.endComercial = true;
+                                }else{
+                                    novoEndPj.endComercial = false;
+                                }
+
+                                novaPj.endereco = novoEndPj;
+
+                                listaPj.add(novaPj);
+
+                                System.out.println("Cadastro realizado com sucesso!");
+
+                                break;
+
+                            case "2":
+                                if(listaPj.size() > 0){
+                                    for (PessoaJuridica cadaPj : listaPj){
+                                        System.out.println("Nome: " + cadaPj.nome);
+                                        System.out.println("CNPJ: " + cadaPj.cnpj);
+                                        System.out.println("Razao Social: " + cadaPj.razaoSocial);
+                                        System.out.println("Imposto a ser pago: " + metodoPj.CalcularImposto(cadaPj.rendimento));
+                                        System.out.println("Endereco: " + cadaPj.endereco.logradouro + "-" + cadaPj.endereco.numero);
+                                        System.out.println();
+                                        System.out.println("Aperte ENTER para continuar");
+                                        leitor.nextLine();
+                                    }
+                                }else{
+                                    System.out.println("Lista vazia!");
+                                }
+                                break;
+                        }
+
+                    }while(!opcaoPj.equals("0"));
+
                     break;
 
                 case "0":
